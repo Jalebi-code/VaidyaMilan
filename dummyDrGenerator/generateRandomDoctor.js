@@ -2,7 +2,7 @@ const generateRandomDoctor = () => {
     const prefix = ["Dr."];
     const firstName = ["Mukesh", "Pragati", "Priya", "Ankoor", "Prachi", "Preeti", "Jasmine", "Jetha", "Daya", "Babita"];
     const lastName = ["Aditya", "Sinha", "Singhaniya", "Jaisawal", "Kishor", "Gupta", "Soni", "Chandrakar", "Patel", "Chandra"];
-    const specializations = ["Cardiologist", "Dermatologist", "Neurologist", "Pediatrician", "Orthopedic Surgeon"];
+    const specializations = ["Cardiologist", "Dermatologist", "Neurologist", "Pediatrician", "Orthopedic Surgeon","Oncologist","Gastroenterologist","Psychiatrist", "gynecologist"];
     const locations = ["Ambikapur", "Dhamtari", "Sakti", "Janjgir-Champa", "Raigarh", "Raipur", "Bilaspur", "Korba", "Katghora", "Bastar"];
     const state = ["Chhattisgarh"];
 

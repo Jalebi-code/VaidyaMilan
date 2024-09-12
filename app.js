@@ -3,9 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
-
 const authRoutes = require('./routes/authRoutes');
-
+const doctorRoutes = require('./routes/doctorRoutes');
 dotenv.config();
 app.use(express.json());
 
@@ -20,7 +19,9 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 // use auth routes
-app.use('/api/auth', authRoutes)
+app.use('/api', authRoutes);
+// use doctor routes
+app.use('/api', doctorRoutes);
 
 app.get('/', (req, res) => {
 
