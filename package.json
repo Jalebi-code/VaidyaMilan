@@ -4,6 +4,7 @@
   "description": "a Doctor appointment appliation",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jalebi_code",
