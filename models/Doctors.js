@@ -11,6 +11,10 @@ const doctorSchema = new Schema({
     email: { type: String, required: true },
     phone: { type: String, required: true },
     location: { type: String, required: true },
+    availability: {
+        days: { type: [String], required: true }, // e.g., ["Monday", "Tuesday", "Wednesday"]
+        time: { type: String, required: true }
+    }
     // password: { type: String, required: true }
 });
 

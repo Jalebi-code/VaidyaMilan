@@ -2,9 +2,11 @@ const generateRandomDoctor = () => {
     const prefix = ["Dr."];
     const firstName = ["Mukesh", "Pragati", "Priya", "Ankoor", "Prachi", "Preeti", "Jasmine", "Jetha", "Daya", "Babita"];
     const lastName = ["Aditya", "Sinha", "Singhaniya", "Jaisawal", "Kishor", "Gupta", "Soni", "Chandrakar", "Patel", "Chandra"];
-    const specializations = ["Cardiologist", "Dermatologist", "Neurologist", "Pediatrician", "Orthopedic Surgeon","Oncologist","Gastroenterologist","Psychiatrist", "gynecologist"];
+    const specializations = ["Cardiologist", "Dermatologist", "Neurologist", "Pediatrician", "OrthopedicSurgeon", "Oncologist", "Gastroenterologist", "Psychiatrist", "gynecologist"];
     const locations = ["Ambikapur", "Dhamtari", "Sakti", "Janjgir-Champa", "Raigarh", "Raipur", "Bilaspur", "Korba", "Katghora", "Bastar"];
     const state = ["Chhattisgarh"];
+    const daySlot = [" Monday to Friday", "Monday to Saturday", "Monday to Thursday", "Monday, Wednesday, Friday", "Tuesday, Thursday, Saturday", "Thursday to Saturday"]
+    const timeSlot = ["10:00AM - 1:00PM", "10:00AM - 2:00PM", "10:00AM - 3:00PM", "11:00AM - 2:00PM", "11:00AM - 3:00PM", "9:00AM - 12:00PM", "2:00PM - 5:00PM", "3:00PM - 6:00PM", "4:00PM - 7:00PM", "5:00PM - 8:00PM"]
 
     // random value generator
     const randomValue = (array) => array[Math.floor(Math.random() * array.length)];
@@ -21,6 +23,14 @@ const generateRandomDoctor = () => {
         return email;
     }
 
+    // random generate doctor availability slot
+    const days = randomValue(daySlot);
+    const time = randomValue(timeSlot);
+
+    const randomAvailability = () => {
+
+        return { days: days, time: time };
+    }
 
 
     return {
@@ -30,6 +40,7 @@ const generateRandomDoctor = () => {
         email: randomEmail(drNames),
         phone: randomPhone(),
         location: `${randomValue(locations)} ${state}`,
+        availability: randomAvailability(),
 
     }
 };
@@ -58,7 +69,7 @@ const insertDoctors = async () => {
 
     const doctors = generateDoctors(10); // Example: Generate 10 doctors
     console.log('Generated doctors:', doctors);
-  
+
     try {
         const result = await Doctor.insertMany(doctors);
         console.log('Doctors inserted successfully', result);
