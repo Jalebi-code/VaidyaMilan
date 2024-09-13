@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const authRoutes = require('./routes/authRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes');
 dotenv.config();
 app.use(express.json());
 
@@ -22,6 +23,8 @@ mongoose.connect(process.env.MONGO_URL)
 app.use('/api', authRoutes);
 // use doctor routes
 app.use('/api', doctorRoutes);
+// use appointment routes
+app.use('/api', appointmentRoutes);
 
 app.get('/', (req, res) => {
 

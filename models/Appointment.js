@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
 
+
 const Schema = mongoose.Schema;
 
 // Create appointment Schema
-const appointmentSchema = new Schema (
+const appointmentSchema = new Schema(
     {
-        patientName: {
-            type: String,
+        userID: {
+            type: Schema.Types.ObjectId, ref: 'User',
             required: true
         },
-        doctorName: {
-            type: String,
+        doctorID: {
+            type: Schema.Types.ObjectId, ref: 'Doctor',
             required: true
         },
         appointmentDate: {
@@ -21,11 +22,15 @@ const appointmentSchema = new Schema (
             type: String,
             required: true
         },
+        consultingType: { type: String, enum: ['regular', 'online'], required: true }, // Type of consultation
+        tokenNumber: { type: String, required: true }, // Unique token for appointment
         status: {
             type: String,
-            default: 'pending'
+            enum: ['inprogress', 'pending', 'approved', 'rejected', 'completed'],
+            default: 'inprogress'
+
         }
     }
 )
 
-module.exports = mongoose.model("Appointment",appointmentSchema)
+module.exports = mongoose.model("Appointment", appointmentSchema)
