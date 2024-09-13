@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL)
 // use auth routes
 app.use('/api', authRoutes);
 // use doctor routes
-app.use('/api', doctrRoutes);
+app.use('/api', doctorRoutes);
 
 app.get('/', (req, res) => {
 
