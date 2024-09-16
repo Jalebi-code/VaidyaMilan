@@ -59,16 +59,4 @@ exports.bookAppointment = async (req, res) => {
     }
 }
 
-exports.getUserAppointment = async(req, res) => {
-    try {
-        const userId = req.user._id; // Assume userId token se aa raha hai
-        const appointments = await Appointment.find({ 'patient._id': userId }).populate('doctor'); // Doctor ke details ko bhi include kar rahe hain
-
-        res.status(200).json(appointments);
-
-    } catch (err) {
-        console.log('Error fetching user appointments ', err);
-        res.status(500).json({ message: "An error occurred while fetching user appointments", error: err.message });
-    }
-}
 
