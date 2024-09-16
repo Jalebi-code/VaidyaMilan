@@ -7,17 +7,17 @@ const Appointment = require('../models/Appointment');
 // API for book Appointment
 exports.bookAppointment = async (req, res) => {
     try {
-        const userid =  req.params.id;
+        const userid = req.params.id;
         if (!userid) {
             return res.status(400).json({ message: "User ID is required" });
         }
-         // check user is available 
+        // check user is available 
         const user = await User.findById(userid);
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-       
-        const { doctorID, userID, appointmentDate, appointmentTime, consultingType } = req.body;
+
+        const { doctorID, userID, appointmentDate, appointmentTime, consultingType, patientName, patientAge, patientSex, patientWeight, patientComplaint } = req.body;
 
         // find doctor by iD 
         const doctor = await Doctors.findById(doctorID);
@@ -42,13 +42,21 @@ exports.bookAppointment = async (req, res) => {
             appointmentDate,
             appointmentTime,
             consultingType,
-            tokenNumber
+            tokenNumber,
+            patient: {
+                name: patientName,
+                age: patientAge,
+                sex:patientSex,
+                weight:patientWeight,
+                complaint:patientComplaint
+               
+            }
 
-        })
+        });
         // save appointment in database
         await newAppointment.save();
 
-        res.status(201).json( {
+        res.status(201).json({
             message: "Appointment booked successfully",
             appointment: newAppointment
         })
@@ -57,4 +65,5 @@ exports.bookAppointment = async (req, res) => {
         console.log('Error Booking appointment ', err);
         res.status(500).json({ message: "An error occurred while booking an appointment", error: err.message });
     }
-}
+};
+
