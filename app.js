@@ -25,6 +25,8 @@ app.use('/api', authRoutes);
 app.use('/api', doctorRoutes);
 // use appointment routes
 app.use('/api', appointmentRoutes);
+// use appointment routes
+app.use('/api', appointmentRoutes);
 
 app.get('/', (req, res) => {
 

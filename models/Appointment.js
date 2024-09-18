@@ -28,7 +28,6 @@ const appointmentSchema = new Schema({
             default: 'inprogress'
 
         },
-
         patient: {
             name: {
                 type: String,
@@ -50,9 +49,8 @@ const appointmentSchema = new Schema({
                 type: String,
 
             }
-
-        },
     }
+}
 )
 
 module.exports = mongoose.model("Appointment", appointmentSchema)

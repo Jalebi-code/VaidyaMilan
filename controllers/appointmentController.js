@@ -1,7 +1,7 @@
 const Doctors = require('../models/Doctors');
 const User = require('../models/User');
 const Appointment = require('../models/Appointment');
-
+const JWT = require("jsonwebtoken");
 
 
 // API for book Appointment
@@ -46,10 +46,10 @@ exports.bookAppointment = async (req, res) => {
             patient: {
                 name: patientName,
                 age: patientAge,
-                sex:patientSex,
-                weight:patientWeight,
-                complaint:patientComplaint
-               
+                sex: patientSex,
+                weight: patientWeight,
+                complaint: patientComplaint
+
             }
 
         });
@@ -65,5 +65,21 @@ exports.bookAppointment = async (req, res) => {
         console.log('Error Booking appointment ', err);
         res.status(500).json({ message: "An error occurred while booking an appointment", error: err.message });
     }
-};
+}
 
+exports.getUserAppointment = async (req, res) => {
+    try {
+        console.log("Getting")
+        const userId = req.user.userID; //  userId token se aa raha hai
+        console.log("token se userID nikala:", userId);
+
+        const appointments = await Appointment.find({ 'userID': userId }).populate('doctorID','name specialization') // Doctor ke details ko bhi include kar rahe hain
+
+        res.status(200).json(appointments);
+
+    } catch (err) {
+        console.log('Error fetching user appointments ', err);
+        res.status(500).json({ message: "An error occurred while fetching user appointments", error: err.message });
+    }
+
+}
