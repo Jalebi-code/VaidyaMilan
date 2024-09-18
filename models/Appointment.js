@@ -29,6 +29,30 @@ const appointmentSchema = new Schema(
             enum: ['inprogress', 'pending', 'approved', 'rejected', 'completed'],
             default: 'inprogress'
 
+        },
+        patient: {
+            name: {
+                type: String,
+
+            },
+            age: {
+                type: Number,
+
+            },
+            sex: {
+                type: String,
+
+            },
+            weight: {
+                type: Number,
+
+            },
+            complaint: {
+                type: String,
+
+            }
+
+
         }
     }
 )
