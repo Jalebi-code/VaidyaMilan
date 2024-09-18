@@ -52,7 +52,7 @@ exports.bookAppointment = async (req, res) => {
 
             }
 
-        })
+        });
         // save appointment in database
         await newAppointment.save();
 
@@ -65,7 +65,6 @@ exports.bookAppointment = async (req, res) => {
         console.log('Error Booking appointment ', err);
         res.status(500).json({ message: "An error occurred while booking an appointment", error: err.message });
     }
-}
 
 exports.getUserAppointment = async (req, res) => {
     try {
@@ -81,4 +80,4 @@ exports.getUserAppointment = async (req, res) => {
         console.log('Error fetching user appointments ', err);
         res.status(500).json({ message: "An error occurred while fetching user appointments", error: err.message });
     }
-}
+
